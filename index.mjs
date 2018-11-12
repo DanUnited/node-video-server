@@ -1,6 +1,9 @@
 import fs from 'fs'
 import http from 'http'
 import WebSocket from 'ws'
+import dotEnv from 'dotenv'
+
+dotEnv.config();
 
 if (process.argv.length < 3) {
   console.log(
@@ -11,9 +14,9 @@ if (process.argv.length < 3) {
 }
 
 const STREAM_SECRET = process.argv[2],
-  STREAM_PORT = process.argv[3] || 8081,
-  WEBSOCKET_PORT = process.argv[4] || 8082,
-  RECORD_STREAM = false
+  STREAM_PORT = process.argv[3] || process.env.STREAM_PORT,
+  WEBSOCKET_PORT = process.argv[4] || process.env.WEBSOCKET_PORT,
+  RECORD_STREAM = process.env.RECORD_STREAM
 
 // Websocket Server
 const socketServer = new WebSocket.Server({port: WEBSOCKET_PORT, perMessageDeflate: false})
@@ -73,12 +76,6 @@ http.createServer(function (request, response) {
       request.socket.recording.close()
     }
   })
-
-  // Record the stream to a local file?
-  if (RECORD_STREAM) {
-    const path = 'recordings/' + Date.now() + '.ts'
-    request.socket.recording = fs.createWriteStream(path)
-  }
 }).listen(STREAM_PORT)
 
 console.log('Listening for incomming MPEG-TS Stream on http://127.0.0.1:' + STREAM_PORT + '/<secret>')
