@@ -1,4 +1,3 @@
-import fs from 'fs'
 import http from 'http'
 import WebSocket from 'ws'
 import dotEnv from 'dotenv'
@@ -15,8 +14,7 @@ if (process.argv.length < 3) {
 
 const STREAM_SECRET = process.argv[2],
   STREAM_PORT = process.argv[3] || process.env.STREAM_PORT,
-  WEBSOCKET_PORT = process.argv[4] || process.env.WEBSOCKET_PORT,
-  RECORD_STREAM = process.env.RECORD_STREAM
+  WEBSOCKET_PORT = process.argv[4] || process.env.WEBSOCKET_PORT
 
 // Websocket Server
 const socketServer = new WebSocket.Server({port: WEBSOCKET_PORT, perMessageDeflate: false})

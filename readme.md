@@ -12,7 +12,7 @@ npm run start
 
 #Run ffmpeg stream in other terminal
 ```$xslt
-ffmpeg -i rtsp://[URL] -f mpegts -codec:v mpeg1video -s 1280x720 -codec:a mp2 -b:v 2000k -b:a 128k -muxdelay 0.001 -tune zerolatency -analyzeduration 0 -preset ultrafast http://localhost:8081/secret 
+ffmpeg -i rtsp://[URL] -f mpegts -codec:v mpeg1video -s 1280x720 -codec:a mp2 -b:v 2000k -b:a 128k -ac 1 -ar 44100 -bf 0 -muxdelay 0.001 -tune zerolatency -analyzeduration 0 -preset ultrafast http://localhost:8081/secret 
 ```
 
 Последним параметром является localhost:[порт]:[секретное слово].
