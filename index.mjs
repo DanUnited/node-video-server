@@ -9,7 +9,8 @@ import {socket} from './app/services/socket'
 dotEnv.config()
 
 const STREAM_PORT = process.env.STREAM_PORT,
-  WEBSOCKET_PORT = process.env.WEBSOCKET_PORT
+  WEBSOCKET_PORT = process.env.WEBSOCKET_PORT,
+  WEBSOCKET_HOST = process.env.WEBSOCKET_HOST
 
 const app = express()
 
@@ -18,6 +19,7 @@ const server = http.createServer(app)
 
 socket.init({
   server,
+  host: WEBSOCKET_HOST,
   port: WEBSOCKET_PORT,
   perMessageDeflate: false,
 });
