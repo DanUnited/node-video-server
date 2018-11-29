@@ -10,9 +10,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "child_process": "^1.0.2",
     "dotenv": "^6.1.0",
+    "express": "^4.16.4",
     "fs": "0.0.1-security",
     "http": "0.0.0",
+    "lodash": "^4.17.11",
+    "util": "^0.11.1",
     "ws": "^6.1.0"
   }
 }
